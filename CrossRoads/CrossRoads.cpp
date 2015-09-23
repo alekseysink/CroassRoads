@@ -101,7 +101,6 @@ void CrossRoads::processSW()
 			if (this->SW.time.get_sec_to_end() == 0){
 				if (this->SW.state == GREEN)
 				{
-					this->SW.stream = false;
 					this->SW.state = YELLOW;
 					this->SW.previous_state = GREEN;
 					this->SW.time.start(2);
@@ -146,7 +145,7 @@ void CrossRoads::controller()
 {
 	while (true)
 	{
-		if ((this->NS.state == RED && this->SW.state == GREEN) || (this->SW.state == RED && this->NS.state == GREEN))
+		if ((this->NS.state == RED && this->SW.state == GREEN) || (this->SW.state == RED && this->NS.state == GREEN)) //stable state
 		{
 			if (this->NS.stream && this->NS.state == GREEN && this->NS.time.get_sec_to_end() < 5)
 			{
